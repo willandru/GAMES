@@ -7,6 +7,8 @@ package inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import main.GameStates;
+import static main.GameStates.*;
 
 /**
  *
@@ -23,11 +25,12 @@ public class KeyBoard implements KeyListener {
     public void keyPressed(KeyEvent ke) {
 
         if (ke.getKeyCode()== KeyEvent.VK_A){
-            System.out.println("A key pressed");
+            GameStates.gameState=MENU;
         }
-        if (ke.getKeyCode()== KeyEvent.VK_B){
-            System.out.println("B key pressed");
-        }
+        if (ke.getKeyCode()== KeyEvent.VK_S){
+            GameStates.gameState=SETTINGS;        }
+        if (ke.getKeyCode()== KeyEvent.VK_P){
+            GameStates.gameState=PLAYIN;        }
     }
 
     @Override

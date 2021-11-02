@@ -3,14 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package scenes;
+
+import main.Game;
 
 /**
  *
  * @author kaliw
  */
-public enum GameStates {
+public class Scene {
+    private Game game;
     
-    PLAYIN,    MENU,    SETTINGS;
-    public static GameStates gameState = MENU;
+    public Scene(Game gm){
+        this.game= gm;
+    }
+
+    public Game getGame() {
+        return game;
+    }
+    
+    
 }

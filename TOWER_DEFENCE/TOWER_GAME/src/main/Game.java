@@ -14,6 +14,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import jdk.jfr.SettingControl;
+import scenes.Menu;
+import scenes.Playing;
+import scenes.Settings;
 
 /**
  *
@@ -31,8 +35,18 @@ public class Game extends JFrame implements Runnable{
     
     private Thread gameThread;
     
+    
+    //  CLASES
+    private Render render;
+    private Menu menu;
+    private Playing playing;
+    private Settings setts;
+       
+    
+    
     public static void main(String[] args) {
         Game g=new Game();
+        
         g.initInputs();
         g.start();
         
@@ -42,7 +56,9 @@ public class Game extends JFrame implements Runnable{
         
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        gameScreen= new Screen(this);
+        initClasses();
+        
+        
         add(gameScreen);
         
         pack();
@@ -121,5 +137,35 @@ public class Game extends JFrame implements Runnable{
        gameThread = new Thread(this){};
        gameThread.start();
     }
+     private void initClasses() {
+        gameScreen= new Screen(this);
+        render= new Render(this);
+        menu = new Menu(this);
+        playing= new Playing(this);
+        setts= new Settings(this);
+    }
+    
+    //SETTER & GETTER
+
+    public Render getRender() {
+        return render;
+    }
+
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public Playing getPlaying() {
+        return playing;
+    }
+
+    public Settings getSetts() {
+        return setts;
+    }
+    
+
+   
+    
+    
     
 }

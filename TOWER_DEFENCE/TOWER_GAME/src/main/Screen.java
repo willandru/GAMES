@@ -27,12 +27,11 @@ public class Screen extends JPanel{
     private Game game;
    private Dimension size;
    
-   private Render render;
+  
 
     public Screen(Game game) {
         
-      
-        render= new Render(this);
+       
         this.game=game;
         
         
@@ -57,7 +56,7 @@ public class Screen extends JPanel{
    protected void paintComponent(Graphics g) {
         super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
        
-        render.render(g);
+        game.getRender().render(g);
        //g.drawRect(50, 50, 100, 100);
         
           

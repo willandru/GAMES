@@ -19,59 +19,28 @@ import javax.imageio.ImageIO;
  */
 public class Render {
     
-    private Screen gameScreen;
-     private BufferedImage img;
-    private ArrayList<BufferedImage> sprites = new ArrayList<>();
-    private Random rdm;
+    private Game renderGame;
+     
     
-    public Render(Screen gs){
-        this.gameScreen=gs;
-        rdm = new Random();
-        importImage();
-        loadSprites();
+    public Render(Game game){
+        this.renderGame=game;
+        
+       
     }
     
     public void render(Graphics g){
         
         switch(GameStates.gameState){
             case MENU:
-                for (int x=0; x<20; x++){
-            for(int y=0; y<20; y++){ 
-              g.drawImage(sprites.get(getRndInt()),x*32,y*32,null);
-            }
-        } 
-                
+                renderGame.getMenu().render(g);
                 break;
             case PLAYIN:
+                renderGame.getPlaying().render(g);
                 break;
             case SETTINGS:
+                renderGame.getSetts().render(g);
                 break;
             
         }
     }
-    
-    private void loadSprites() {
-for (int y=0; y<10; y++){
-            for(int x=0; x<10; x++){ 
-            sprites.add(img.getSubimage(x*32, y*32, 32, 32));
-            }
-        }
-    }
-    
-       
-    private int getRndInt(){
-        return rdm.nextInt(100)  ;
-    }
-    
-     private void importImage() {
-        InputStream is = getClass().getResourceAsStream("/res/sprite.png");
-        try {
-            img = ImageIO.read(is);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
-    }
-
-    
 }

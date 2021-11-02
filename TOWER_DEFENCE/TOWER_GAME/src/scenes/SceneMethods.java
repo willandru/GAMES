@@ -3,14 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package scenes;
+
+import java.awt.Graphics;
 
 /**
  *
  * @author kaliw
  */
-public enum GameStates {
+public interface SceneMethods {
     
-    PLAYIN,    MENU,    SETTINGS;
-    public static GameStates gameState = MENU;
+    /**
+     *
+     * @param g
+     */
+    public void render(Graphics g);
+    
+    
+    
 }

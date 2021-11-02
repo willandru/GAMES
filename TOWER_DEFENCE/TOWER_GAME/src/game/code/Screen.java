@@ -24,6 +24,8 @@ public class Screen extends JPanel{
     private Random rdm;
     private BufferedImage img;
     private ArrayList<BufferedImage> sprites = new ArrayList<>();
+    private long lastTime;
+    private int frames;
 
     public Screen(BufferedImage image) {
         rdm = new Random();
@@ -45,8 +47,15 @@ public class Screen extends JPanel{
             for(int y=0; y<20; y++){ 
               g.drawImage(sprites.get(getRndInt()),x*32,y*32,null);
             }
+        }        
+        frames++;
+        if(System.currentTimeMillis()-lastTime >=1000){
+            System.out.println("FPS: "+frames);
+            frames=0;
+            lastTime=System.currentTimeMillis();
         }
-        
+        repaint();
+
     }
     
     private Color getRndColor(){

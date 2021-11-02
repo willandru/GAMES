@@ -27,7 +27,7 @@ public class Game extends JFrame implements Runnable{
     
     private Screen gameScreen;
    
-    private final double FPS_SET=120.0;
+    private final double FPS_SET=3.0;
     private final double UPS_SET=60.0;
      
     private Mouse myMouse;
@@ -63,6 +63,7 @@ public class Game extends JFrame implements Runnable{
         
         pack();
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
         
     }

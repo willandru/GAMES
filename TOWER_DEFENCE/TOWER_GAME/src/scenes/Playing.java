@@ -5,25 +5,37 @@
  */
 package scenes;
 
+import helpz.LevelBuilder;
 import java.awt.Color;
 import java.awt.Graphics;
 import main.Game;
+import managers.TileManager;
 
 /**
  *
  * @author kaliw
  */
 public class Playing extends Scene implements SceneMethods{
+    private int[][] lvl;
+    private TileManager tm;
 
     public Playing(Game gm) {
         super(gm);
+        
+        lvl= LevelBuilder.getLevelData();
+        tm= new TileManager();
     }
 
     @Override
     public void render(Graphics g) {
         
-        g.setColor(Color.red);
-        g.fillRect(0, 0, 600, 600);
+       for(int y=0; y<20; y++){
+           for(int x=0; x<20; x++){
+               int id= lvl[y][x];
+               g.drawImage(tm.getSprites(id), x*32, y*32, null);
+           
+       }
+       }
     }
     
 }

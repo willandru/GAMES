@@ -29,7 +29,7 @@ public class KeyBoard implements KeyListener {
         }
         if (ke.getKeyCode()== KeyEvent.VK_S){
             GameStates.gameState=SETTINGS;        }
-        if (ke.getKeyCode()== KeyEvent.VK_P){
+        if (ke.getKeyCode()== KeyEvent.VK_D){
             GameStates.gameState=PLAYIN;        }
     }
 

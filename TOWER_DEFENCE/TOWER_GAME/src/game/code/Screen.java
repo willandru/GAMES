@@ -7,6 +7,12 @@ package game.code;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -14,8 +20,15 @@ import javax.swing.JPanel;
  * @author kaliw
  */
 public class Screen extends JPanel{
+    
+    private Random rdm;
+    private BufferedImage img;
+    private ArrayList<BufferedImage> sprites = new ArrayList<>();
 
-    public Screen() {
+    public Screen(BufferedImage image) {
+        rdm = new Random();
+        this.img=image;
+        loadSprites();
     }
 
     /**
@@ -25,12 +38,36 @@ public class Screen extends JPanel{
     @Override
    protected void paintComponent(Graphics g) {
         super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
-        //g.drawRect(50, 50, 100, 100);
-        g.setColor(Color.red);
-        g.fillRect(0, 0, 32, 32);
-        g.fillRect(32, 0, 32, 32);
+       
+       //g.drawRect(50, 50, 100, 100);
+        
+        for (int x=0; x<20; x++){
+            for(int y=0; y<20; y++){ 
+              g.drawImage(sprites.get(getRndInt()),x*32,y*32,null);
+            }
+        }
+        
     }
     
+    private Color getRndColor(){
+        int r,g,b;
+        r=rdm.nextInt(255);
+        g=rdm.nextInt(255);
+        b=rdm.nextInt(255);
+        
+        return new Color(r,g,b);
+    }
     
+    private int getRndInt(){
+        return rdm.nextInt(100)  ;
+    }
+
+    private void loadSprites() {
+for (int y=0; y<10; y++){
+            for(int x=0; x<10; x++){ 
+            sprites.add(img.getSubimage(x*32, y*32, 32, 32));
+            }
+        }
+    }
     
 }

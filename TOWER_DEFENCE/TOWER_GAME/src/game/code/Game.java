@@ -17,24 +17,35 @@ import javax.swing.JFrame;
  *
  * @author kaliw
  */
-public class Game extends JFrame{
+public class Game extends JFrame implements Runnable{
     
     private Screen gameScreen;
     private BufferedImage img;
+   
+    private final double FPS_SET=60.0;
+     private final double UPS_SET=120.0;
+     
+    private int updates;
+    private long lastTimeUPS;
+    
+    private Thread gameThread;
     
     public static void main(String[] args) {
-        new Game();
+        Game g=new Game();
+        g.start();
+        
     }
     public Game(){
-        
+
         importImage();
-        setSize(640,640);      
+              
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        
         gameScreen= new Screen(img);
         add(gameScreen);
         
-        
+        pack();
+        setLocationRelativeTo(null);
         setVisible(true);
         
     }
@@ -47,6 +58,62 @@ public class Game extends JFrame{
             ex.printStackTrace();
         }
         
+    }
+    
+    
+
+
+
+    @Override
+    public void run() {
+         double timePerFrame= 1000000000.0/FPS_SET; 
+         long lastFrame= System.nanoTime();
+        
+         int updates=0;
+         int frames=0;
+         long lastTimeCheck= System.currentTimeMillis();
+         
+         double timePerUpdates=1000000000.0/UPS_SET; 
+         long lastUpdate= System.nanoTime();
+         
+         long now;
+        while(true){
+            
+            now=System.nanoTime();
+            //RENDER
+         if(now-lastFrame >= timePerFrame){
+            lastFrame= now;
+            repaint();
+            frames++;
+        }
+         //UPDATE
+         if(now-lastUpdate >= timePerUpdates){
+               
+                lastUpdate=now;
+               updates++;
+            }
+         
+        //CHECKING FPS AND UPS
+         if(System.currentTimeMillis()-lastTimeCheck >=1000){
+            System.out.println("FPS: "+frames+ " | UPS: "+ updates);
+            frames=0;
+            updates=0;
+            lastTimeCheck=System.currentTimeMillis();
+        }
+         
+         
+    }
+        
+        
+        
+        
+        
+
+    }
+
+    private void start() {
+       gameThread = new Thread(this){};
+       gameThread.start();
     }
     
 }

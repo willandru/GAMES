@@ -6,6 +6,7 @@
 package game.code;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -24,13 +25,24 @@ public class Screen extends JPanel{
     private Random rdm;
     private BufferedImage img;
     private ArrayList<BufferedImage> sprites = new ArrayList<>();
-    private long lastTime;
-    private int frames;
+  
+   private Dimension size;
 
     public Screen(BufferedImage image) {
         rdm = new Random();
         this.img=image;
         loadSprites();
+    
+        setPanelSize();
+        
+        
+    }
+    
+    private void setPanelSize(){
+      size= new Dimension(640,640);
+        setMaximumSize(size);
+        setPreferredSize(size);
+        setMinimumSize(size);
     }
 
     /**
@@ -47,16 +59,15 @@ public class Screen extends JPanel{
             for(int y=0; y<20; y++){ 
               g.drawImage(sprites.get(getRndInt()),x*32,y*32,null);
             }
-        }        
-        frames++;
-        if(System.currentTimeMillis()-lastTime >=1000){
-            System.out.println("FPS: "+frames);
-            frames=0;
-            lastTime=System.currentTimeMillis();
-        }
-        repaint();
+        }   
+        
+       
+      
+        
 
     }
+   
+  
     
     private Color getRndColor(){
         int r,g,b;

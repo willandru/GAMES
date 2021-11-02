@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.code;
+package main;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -22,16 +22,20 @@ import javax.swing.JPanel;
  */
 public class Screen extends JPanel{
     
-    private Random rdm;
-    private BufferedImage img;
-    private ArrayList<BufferedImage> sprites = new ArrayList<>();
-  
+    
+   
+    private Game game;
    private Dimension size;
+   
+   private Render render;
 
-    public Screen(BufferedImage image) {
-        rdm = new Random();
-        this.img=image;
-        loadSprites();
+    public Screen(Game game) {
+        
+      
+        render= new Render(this);
+        this.game=game;
+        
+        
     
         setPanelSize();
         
@@ -53,41 +57,16 @@ public class Screen extends JPanel{
    protected void paintComponent(Graphics g) {
         super.paintComponent(g); //To change body of generated methods, choose Tools | Templates.
        
+        render.render(g);
        //g.drawRect(50, 50, 100, 100);
         
-        for (int x=0; x<20; x++){
-            for(int y=0; y<20; y++){ 
-              g.drawImage(sprites.get(getRndInt()),x*32,y*32,null);
-            }
-        }   
-        
-       
-      
-        
+          
 
     }
    
   
+ 
+ 
     
-    private Color getRndColor(){
-        int r,g,b;
-        r=rdm.nextInt(255);
-        g=rdm.nextInt(255);
-        b=rdm.nextInt(255);
-        
-        return new Color(r,g,b);
-    }
-    
-    private int getRndInt(){
-        return rdm.nextInt(100)  ;
-    }
-
-    private void loadSprites() {
-for (int y=0; y<10; y++){
-            for(int x=0; x<10; x++){ 
-            sprites.add(img.getSubimage(x*32, y*32, 32, 32));
-            }
-        }
-    }
     
 }

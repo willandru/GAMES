@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game.code;
+package main;
 
+import inputs.KeyBoard;
+import inputs.Mouse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -20,28 +22,27 @@ import javax.swing.JFrame;
 public class Game extends JFrame implements Runnable{
     
     private Screen gameScreen;
-    private BufferedImage img;
    
-    private final double FPS_SET=60.0;
-     private final double UPS_SET=120.0;
+    private final double FPS_SET=120.0;
+    private final double UPS_SET=60.0;
      
-    private int updates;
-    private long lastTimeUPS;
+    private Mouse myMouse;
+    private KeyBoard myKeyBoard;
     
     private Thread gameThread;
     
     public static void main(String[] args) {
         Game g=new Game();
+        g.initInputs();
         g.start();
         
     }
     public Game(){
 
-        importImage();
-              
+        
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        gameScreen= new Screen(img);
+        gameScreen= new Screen(this);
         add(gameScreen);
         
         pack();
@@ -49,16 +50,19 @@ public class Game extends JFrame implements Runnable{
         setVisible(true);
         
     }
-
-    private void importImage() {
-        InputStream is = getClass().getResourceAsStream("/res/sprite.png");
-        try {
-            img = ImageIO.read(is);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+    
+    private void initInputs(){
+        myMouse= new Mouse();
+        myKeyBoard= new KeyBoard();
         
+        addMouseListener(myMouse);
+        addMouseMotionListener(myMouse);
+        addKeyListener(myKeyBoard);
+        
+        requestFocus();
     }
+
+   
     
     
 
@@ -77,6 +81,8 @@ public class Game extends JFrame implements Runnable{
          long lastUpdate= System.nanoTime();
          
          long now;
+         
+         
         while(true){
             
             now=System.nanoTime();

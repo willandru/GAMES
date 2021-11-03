@@ -18,7 +18,10 @@ public interface SceneMethods {
      * @param g
      */
     public void render(Graphics g);
-    
+    public void mouseClick(int x, int y);
+    public void mouseMov(int x, int y);
+    public void mousePress(int x, int y);
+    public void mouseReleas(int x, int y);
     
     
 }

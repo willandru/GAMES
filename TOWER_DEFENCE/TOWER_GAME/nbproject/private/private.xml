@@ -3,10 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/game/code/Game.java</file>
-            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/inputs/KeyBoard.java</file>
-            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/game/code/Screen.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/scenes/Settings.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/main/Game.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/UI/MyButton.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/main/GameStates.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/scenes/Playing.java</file>
             <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/inputs/Mouse.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/main/Screen.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/scenes/SceneMethods.java</file>
+            <file>file:/home/kaliw/GITHUB/GAMES/TOWER_DEFENCE/TOWER_GAME/src/scenes/Menu.java</file>
         </group>
     </open-files>
 </project-private>

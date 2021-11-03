@@ -5,6 +5,8 @@
  */
 package main;
 
+import inputs.KeyBoard;
+import inputs.Mouse;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -26,7 +28,9 @@ public class Screen extends JPanel{
    
     private Game game;
    private Dimension size;
-   
+   private Mouse myMouse;
+    private KeyBoard myKeyBoard;
+    
   
 
     public Screen(Game game) {
@@ -39,6 +43,17 @@ public class Screen extends JPanel{
         setPanelSize();
         
         
+    }
+    
+       public void initInputs(){
+        myMouse= new Mouse(game);
+        myKeyBoard= new KeyBoard();
+        
+        addMouseListener(myMouse);
+        addMouseMotionListener(myMouse);
+        addKeyListener(myKeyBoard);
+        
+        requestFocus();
     }
     
     private void setPanelSize(){
